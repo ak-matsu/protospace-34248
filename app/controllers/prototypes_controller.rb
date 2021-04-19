@@ -2,7 +2,7 @@ class PrototypesController < ApplicationController
   before_action :set_comment, only: [:edit, :show,]
 
   # except除外する
-  before_action :move_to_index, except: [:index, :show]
+  before_action :move_to_index, except: [:index,:new,:create,:show]
 
   def index
     @prototypes = Prototype.all
@@ -48,6 +48,7 @@ class PrototypesController < ApplicationController
   def destroy
     prototype = Prototype.find(params[:id])
     prototype.destroy
+    redirect_to action: :index
   end
 
   private
