@@ -15,7 +15,9 @@
     <%# // ログインしているときは上記を表示する %>
     <div class="card__wrapper">
       <%# 投稿機能実装後、部分テンプレートでプロトタイプ投稿一覧を表示する %>
-      <%= render partial: 'prototypes/prototype', collection: @prototypes %>
+      <%= render partial: "prototypes/prototype", collection: @prototypes %>
+      <%# #{@prototype.id} %>
+      <%# <%= link_to prototype.user.name, "/users/#{prototype.user.id}", class: :card__user,method: :get %>
     </div>
   </div>
 </main>
