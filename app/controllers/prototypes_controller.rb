@@ -1,5 +1,5 @@
 class PrototypesController < ApplicationController
-  before_action :set_comment, only: [:edit, :show,]
+  # before_action :set_comment, only: [:edit, :show,]
 
   # except除外する
   before_action :move_to_index, except: [:index,:new,:create,:show]
@@ -66,7 +66,7 @@ class PrototypesController < ApplicationController
     end
   end
 
-  def set_comment
-    @comment = Comment.find(params[:id])
-  end
+  # def set_comment
+  #   @comment = Comment.find(params[:id])
+  # end
 end
