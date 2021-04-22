@@ -1,4 +1,5 @@
 class PrototypesController < ApplicationController
+  # before_action :処理させたいメソッド名 only:オプション[:httpメソッド]
   # before_action :set_comment, only: [:edit, :show,]
 
   # except除外する
