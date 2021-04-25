@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   # get   'users/:id',to:  'users#show'
   resources :users,only: [:edit, :update, :new,:show]
   resources :prototypes,only: [:create,:show,:edit,:update,:destroy] do
-    resources :comments, only: :create
+    resources :comments, only: [:create,:show]
   end
 end

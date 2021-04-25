@@ -5,14 +5,15 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to prototype_path(@comment.prototype)
       # redirect_to "prototypes/#{comment.prototype.id}"
-
     else
-      render "prototypes/show"
+      @prototype = @comment.prototype
+      @comments = @prototype.comments
+      redirect_to prototype_path(@comment.prototype.id)
     end
   end
-  
+
   def show
-    # @comments = Comment.all
+    @comments = Comment.all
     
   end
 
@@ -21,6 +22,5 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:text).merge(user_id: current_user.id,prototype_id: params[:prototype_id])
   end
-
 
 end

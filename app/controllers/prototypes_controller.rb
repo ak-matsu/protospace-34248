@@ -1,7 +1,7 @@
 class PrototypesController < ApplicationController
   # before_action :処理させたいメソッド名 only:オプション[:httpメソッド]
   # before_action :set_comment, only: [:edit, :show,]
-
+  
   # except除外する
   before_action :move_to_index, except: [:index,:new,:create,:show]
 
@@ -12,6 +12,9 @@ class PrototypesController < ApplicationController
 
   def new
     @prototype = Prototype.new
+    unless user_signed_in? && current_user.id == @prototype.user_id
+      redirect_to action: :index
+    end
   end
 
   def create
@@ -26,7 +29,7 @@ class PrototypesController < ApplicationController
   def edit
     # binding.pry
     
-    
+
   end
 
   def show
@@ -42,7 +45,7 @@ class PrototypesController < ApplicationController
     if prototype.update(prototype_params)
       redirect_to action: :show
     else
-        render :create
+        render :edit
     end
   end
 
@@ -59,15 +62,14 @@ class PrototypesController < ApplicationController
 
   def move_to_index
     @prototype = Prototype.find(params[:id])
-    unless user_signed_in?
+    unless user_signed_in? && current_user.id == @prototype.user_id
       # user_signed_in?
       # user_signed_in? && current_user.id == @prototype.user_id
+
 
       redirect_to action: :index
     end
   end
 
-  # def set_comment
-  #   @comment = Comment.find(params[:id])
-  # end
+
 end
