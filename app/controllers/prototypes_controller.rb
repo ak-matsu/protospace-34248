@@ -11,8 +11,9 @@ class PrototypesController < ApplicationController
   end
 
   def new
+    if  user_signed_in?
     @prototype = Prototype.new
-    unless user_signed_in? && current_user.id == @prototype.user_id
+    else
       redirect_to action: :index
     end
   end
