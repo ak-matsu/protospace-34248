@@ -14,7 +14,7 @@ class PrototypesController < ApplicationController
     if  user_signed_in?
     @prototype = Prototype.new
     else
-      redirect_to action: :index
+      redirect_to new_user_session_path
     end
   end
 
@@ -66,9 +66,9 @@ class PrototypesController < ApplicationController
     unless user_signed_in? && current_user.id == @prototype.user_id
       # user_signed_in?
       # user_signed_in? && current_user.id == @prototype.user_id
-
-
-      redirect_to action: :index
+      # redirect_to "prototypes/#{comment.prototype.id}"
+      redirect_to new_user_session_path
+      # redirect_to action: :index
     end
   end
 
