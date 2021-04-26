@@ -29,8 +29,9 @@ class PrototypesController < ApplicationController
 
   def edit
     # binding.pry
-    
-
+    unless user_signed_in? && current_user.id == @prototype.user_id
+      redirect_to action: :index
+    end
   end
 
   def show
@@ -63,6 +64,7 @@ class PrototypesController < ApplicationController
 
   def move_to_index
     @prototype = Prototype.find(params[:id])
+    # プロトタイプの投稿者とログインしているユーザーが同じであれば以下を表示する
     unless user_signed_in? && current_user.id == @prototype.user_id
       # user_signed_in?
       # user_signed_in? && current_user.id == @prototype.user_id
